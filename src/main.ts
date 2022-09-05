@@ -9,10 +9,15 @@ async function bootstrap() {
     type: VersioningType.URI,
     defaultVersion: '2',
   });
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     }),
   );
   await app.listen(3000);
