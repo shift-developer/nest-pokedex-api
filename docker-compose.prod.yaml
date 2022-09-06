@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  pokedexapp:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    image: pokedex-docker
+    container_name: pokedexapp
+    restart: always
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      MONGODB: ${MONGODB}
+      PORT: ${PORT}
+      DEFAULT_LIMIT: ${DEFAULT_LIMIT}
+
+  db:
+    image: mongo:5
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: nest-pokemon
+    volumes:
+      - ./mongo:/data/db # Persists DB data
+    

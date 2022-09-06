@@ -51,6 +51,22 @@ yarn start:dev
 
 8. Reconstruir la base de datos con la semilla
 
+# Ejecutar con docker en producción
+1. Clonar el archivo ```.env.template``` y renombar la copia a ```
+.env.prod```
+
+2. Llenar las variables de entorno definidas en el ```.env.prod```
+
+3. Hacer el build en docker usando
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
+
+4. Para solo correr la app sin hacer build
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up
+```
+
 
 ## Stack usado
 * MongoDB
